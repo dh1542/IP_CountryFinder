@@ -1,4 +1,8 @@
 import re
+import geoip2.webservice
+import geoip2.database
+import requests
+
 
 
 # Country from IP Lookup – Enter an IP address and find the country that IP is registered in.
@@ -44,16 +48,21 @@ def validate_IP(IP):
 
 				
 
-		
+ip = "179.58.96.128"
 
-		
-
+# /Users/dominik/Documents/Projects/IP_CountryFinder/GeoLite2-City_20210309/GeoLite2-City.mmdb
+with geoip2.database.Reader('/Users/dominik/Documents/Projects/IP_CountryFinder/GeoLite2-City_20210309/GeoLite2-City.mmdb') as reader:
+	response = reader.city(ip)
+	print(response.country.iso_code)
+	print(response.city.name)
 	
+		
 
 
 
-ip = "02001:0db8:85a3:0000:0000:8a2e:0370:7334"
-print(validate_IP(ip))
+
+
+
 
 
 
